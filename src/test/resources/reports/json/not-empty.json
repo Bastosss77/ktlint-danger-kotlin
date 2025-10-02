@@ -1,0 +1,25 @@
+[
+  {
+    "file": "fakeFile.kt",
+    "errors": [
+      {
+        "line": 13,
+        "column": 1,
+        "message": "Trailing space(s)",
+        "rule": "standard:no-trailing-spaces"
+      },
+      {
+        "line": 24,
+        "column": 5,
+        "message": "Function name should start with a lowercase letter (except factory methods) and use camel case",
+        "rule": "standard:function-naming"
+      },
+      {
+        "line": 26,
+        "column": 1,
+        "message": "File must end with a newline (\\n)",
+        "rule": "standard:final-newline"
+      }
+    ]
+  }
+]

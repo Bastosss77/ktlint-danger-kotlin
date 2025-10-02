@@ -1,0 +1,14 @@
+[
+  {
+    "fileName": "fakeFile.kt",
+    "unwanted_filed": true,
+    "errors": [
+      {
+        "line_number": 13,
+        "column": 1,
+        "message": "Trailing space(s)",
+        "rule": "standard:no-trailing-spaces"
+      }
+    ]
+  }
+]
