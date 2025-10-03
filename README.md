@@ -9,7 +9,7 @@ Plugin for [Danger Kotlin](https://google.com]) to allow you to import, parse an
 Add the dependency to your `Dangerfile.df.kts`. You could check the last version available on [Maven Central]().
 
 ```
-@file:DependsOn("org.jazzilla.danger.ktlint:plugin:0.1.0")
+@file:DependsOn("io.github.bastosss77:ktlint-danger-kotlin:LATEST")
 
 register.plugin(KtlintPlugin)
 ```
