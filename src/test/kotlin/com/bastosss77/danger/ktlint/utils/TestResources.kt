@@ -1,4 +1,4 @@
-package org.jazzilla.danger.ktlint.utils
+package com.bastosss77.danger.ktlint.utils
 
 import java.io.File
 

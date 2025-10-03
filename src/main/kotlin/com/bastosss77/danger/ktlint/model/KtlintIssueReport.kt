@@ -1,4 +1,4 @@
-package org.example.org.jazzilla.danger.ktlint.model
+package com.bastosss77.danger.ktlint.model
 
 data class KtlintIssueReport(
     val issues: Set<KtlintFileIssue>,

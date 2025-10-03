@@ -1,8 +1,8 @@
-package org.jazzilla.danger.ktlint.model
+package com.bastosss77.danger.ktlint.model
 
-import org.example.org.jazzilla.danger.ktlint.model.KtlintFileIssue
-import org.example.org.jazzilla.danger.ktlint.model.KtlintIssue
-import org.example.org.jazzilla.danger.ktlint.model.KtlintIssueReport
+import com.bastosss77.danger.ktlint.model.KtlintFileIssue
+import com.bastosss77.danger.ktlint.model.KtlintIssue
+import com.bastosss77.danger.ktlint.model.KtlintIssueReport
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

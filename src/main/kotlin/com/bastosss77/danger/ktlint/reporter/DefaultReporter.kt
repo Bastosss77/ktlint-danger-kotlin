@@ -1,14 +1,16 @@
-package org.example.org.jazzilla.danger.ktlint.reporter
+package com.bastosss77.danger.ktlint.reporter
 
-import org.example.org.jazzilla.danger.ktlint.model.KtlintIssue
-import org.example.org.jazzilla.danger.ktlint.model.KtlintIssueReport
+import com.bastosss77.danger.ktlint.model.KtlintIssue
+import com.bastosss77.danger.ktlint.model.KtlintIssueReport
 import systems.danger.kotlin.sdk.DangerContext
 import java.io.File
 
 internal class DefaultReporter(
     private val context: DangerContext,
-) : KtlintReporter {
+) : com.bastosss77.danger.ktlint.reporter.KtlintReporter {
     private val rootPath = File("").absolutePath
+
+    //TODO: Add message with count of issues
 
     override fun report(report: KtlintIssueReport) {
         if (!report.isClean) {
@@ -29,7 +31,7 @@ internal class DefaultReporter(
         }
     }
 
-    private fun prepareMessage(issue: KtlintIssue): String =
+    private fun prepareMessage(issue: com.bastosss77.danger.ktlint.model.KtlintIssue): String =
         """
         **Ktlint** : ${issue.message}
         **Rule** : ${issue.rule}

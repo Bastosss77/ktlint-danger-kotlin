@@ -1,13 +1,13 @@
-package org.jazzilla.danger.ktlint.reporter
+package com.bastosss77.danger.ktlint.reporter
 
 import io.mockk.confirmVerified
 import io.mockk.justRun
 import io.mockk.mockk
 import io.mockk.verify
-import org.example.org.jazzilla.danger.ktlint.model.KtlintFileIssue
-import org.example.org.jazzilla.danger.ktlint.model.KtlintIssue
-import org.example.org.jazzilla.danger.ktlint.model.KtlintIssueReport
-import org.example.org.jazzilla.danger.ktlint.reporter.DefaultReporter
+import com.bastosss77.danger.ktlint.model.KtlintFileIssue
+import com.bastosss77.danger.ktlint.model.KtlintIssue
+import com.bastosss77.danger.ktlint.model.KtlintIssueReport
+import com.bastosss77.danger.ktlint.reporter.DefaultReporter
 import systems.danger.kotlin.sdk.DangerContext
 import java.io.File
 import kotlin.test.AfterTest

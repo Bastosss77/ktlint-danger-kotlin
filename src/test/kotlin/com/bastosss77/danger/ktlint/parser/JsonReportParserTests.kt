@@ -1,10 +1,10 @@
-package org.jazzilla.danger.ktlint.parser
+package com.bastosss77.danger.ktlint.parser
 
-import org.example.org.jazzilla.danger.ktlint.model.KtlintFileIssue
-import org.example.org.jazzilla.danger.ktlint.model.KtlintIssue
-import org.example.org.jazzilla.danger.ktlint.model.KtlintIssueReport
-import org.example.org.jazzilla.danger.ktlint.parser.JsonReportParser
-import org.jazzilla.danger.ktlint.utils.TestResources
+import com.bastosss77.danger.ktlint.utils.TestResources
+import com.bastosss77.danger.ktlint.model.KtlintFileIssue
+import com.bastosss77.danger.ktlint.model.KtlintIssue
+import com.bastosss77.danger.ktlint.model.KtlintIssueReport
+import com.bastosss77.danger.ktlint.parser.JsonReportParser
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails

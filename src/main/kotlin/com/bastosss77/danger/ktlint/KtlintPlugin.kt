@@ -1,10 +1,10 @@
-package org.example.org.jazzilla.danger.ktlint
+package com.bastosss77.danger.ktlint
 
-import org.example.org.jazzilla.danger.ktlint.model.KtlintIssueReport
-import org.example.org.jazzilla.danger.ktlint.parser.JsonReportParser
-import org.example.org.jazzilla.danger.ktlint.parser.KtlintReportParser
-import org.example.org.jazzilla.danger.ktlint.reporter.DefaultReporter
-import org.example.org.jazzilla.danger.ktlint.reporter.KtlintReporter
+import com.bastosss77.danger.ktlint.model.KtlintIssueReport
+import com.bastosss77.danger.ktlint.parser.JsonReportParser
+import com.bastosss77.danger.ktlint.parser.KtlintReportParser
+import com.bastosss77.danger.ktlint.reporter.DefaultReporter
+import com.bastosss77.danger.ktlint.reporter.KtlintReporter
 import systems.danger.kotlin.sdk.DangerPlugin
 import java.io.File
 
@@ -33,7 +33,9 @@ object KtlintPlugin : DangerPlugin() {
 
     fun report(
         report: KtlintIssueReport,
-        reporter: KtlintReporter = DefaultReporter(context),
+        reporter: KtlintReporter = DefaultReporter(
+            context
+        ),
     ) {
         reporter.report(report)
     }
