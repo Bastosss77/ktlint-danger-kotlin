@@ -2,10 +2,10 @@ import org.jlleitschuh.gradle.ktlint.KtlintExtension
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
-    kotlin("jvm") version "2.2.20"
-    kotlin("plugin.serialization") version "2.2.20"
-    id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
-    id("com.vanniktech.maven.publish") version "0.34.0"
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.mavenPublish)
 }
 
 repositories {
@@ -13,12 +13,12 @@ repositories {
 }
 
 dependencies {
-    implementation("systems.danger:danger-kotlin-sdk:1.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    implementation(libs.dangerSdk)
+    implementation(libs.kotlinx.serialization)
 
-    testImplementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
-    testImplementation("io.mockk:mockk:1.14.6")
-    testImplementation(kotlin("test"))
+    testImplementation(libs.kotlinx.serialization)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlin.test)
 }
 
 tasks.test {
@@ -26,11 +26,11 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(libs.versions.jvmVersion.get().toInt())
 }
 
 configure<KtlintExtension> {
-    version.set("1.7.1")
+    version.set(libs.versions.ktlint.get())
 
     reporters {
         reporter(ReporterType.JSON)
@@ -39,12 +39,14 @@ configure<KtlintExtension> {
         reporter(ReporterType.PLAIN)
     }
 }
+group = libs.versions.group.get()
+version = libs.versions.version.get()
 
 mavenPublishing {
     publishToMavenCentral()
     signAllPublications()
 
-    coordinates("io.github.bastosss77", "ktlint-danger-kotlin", "0.1.0")
+    coordinates(group.toString(), "ktlint-danger-kotlin", version.toString())
 
     pom {
         name.set("Ktlint Danger Kotlin")

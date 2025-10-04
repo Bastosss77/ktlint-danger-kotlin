@@ -1,0 +1,67 @@
+package io.github.bastosss77.danger.ktlint
+
+import io.github.bastosss77.danger.ktlint.model.KtlintIssueReport
+import io.github.bastosss77.danger.ktlint.parser.JsonReportParser
+import io.github.bastosss77.danger.ktlint.parser.KtlintReportParser
+import io.github.bastosss77.danger.ktlint.reporter.DefaultReporter
+import io.github.bastosss77.danger.ktlint.reporter.KtlintReporter
+import systems.danger.kotlin.sdk.DangerPlugin
+import java.io.File
+
+
+/**
+ * Ktlint plugin for Danger Kotlin. Parse and report Ktlint issue on your pull requests
+ *
+ */
+object KtlintPlugin : DangerPlugin() {
+    override val id: String = "ktlintPlugin"
+
+    private val parsers =
+        mapOf<String, KtlintReportParser>(
+            "json" to JsonReportParser(),
+        )
+
+    /**
+     * Parse a Ktlint report file to create a report used to display issues from Ktlint
+     * @param file File to Ktlint report
+     */
+    fun parse(file: File): KtlintIssueReport {
+        val parser = parsedBy(file)
+        return parser.parse(file)
+    }
+
+    /**
+     * Parse a Ktlint report files to create a report used to display issues from Ktlint
+     * @param files List of files to Ktlint report
+     */
+    fun parse(files: Array<File>): KtlintIssueReport {
+        val report = KtlintIssueReport(emptySet())
+
+        return files.fold(report) { acc, next ->
+            val fileReport = parsedBy(next).parse(next)
+
+            acc + fileReport
+        }
+    }
+
+    /**
+     * Post the parsed report via Danger to your pull request. I case the default reporter doesn't give
+     * you satisfaction, you can give a custom one by implementing [KtlintReporter]
+     * @param report Report to post
+     * @param reporter Reporter used to post the report
+     */
+    fun report(
+        report: KtlintIssueReport,
+        reporter: KtlintReporter = DefaultReporter(
+            context
+        ),
+    ) {
+        reporter.report(report)
+    }
+
+    /**
+     * Find the correct parser to use based on the file extension provided as Ktlint report file
+     * @param file Ktlint report file
+     */
+    private fun parsedBy(file: File) = parsers[file.extension] ?: throw IllegalArgumentException("No parser found for file ${file.path} with extension ${file.extension}")
+}

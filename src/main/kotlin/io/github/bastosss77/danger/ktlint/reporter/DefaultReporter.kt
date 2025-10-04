@@ -1,13 +1,13 @@
-package com.bastosss77.danger.ktlint.reporter
+package io.github.bastosss77.danger.ktlint.reporter
 
-import com.bastosss77.danger.ktlint.model.KtlintIssue
-import com.bastosss77.danger.ktlint.model.KtlintIssueReport
+import io.github.bastosss77.danger.ktlint.model.KtlintIssue
+import io.github.bastosss77.danger.ktlint.model.KtlintIssueReport
 import systems.danger.kotlin.sdk.DangerContext
 import java.io.File
 
 internal class DefaultReporter(
     private val context: DangerContext,
-) : com.bastosss77.danger.ktlint.reporter.KtlintReporter {
+) : KtlintReporter {
     private val rootPath = File("").absolutePath
 
     //TODO: Add message with count of issues
@@ -31,7 +31,7 @@ internal class DefaultReporter(
         }
     }
 
-    private fun prepareMessage(issue: com.bastosss77.danger.ktlint.model.KtlintIssue): String =
+    private fun prepareMessage(issue: KtlintIssue): String =
         """
         **Ktlint** : ${issue.message}
         **Rule** : ${issue.rule}

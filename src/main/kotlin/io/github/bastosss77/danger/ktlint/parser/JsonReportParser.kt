@@ -1,10 +1,10 @@
-package com.bastosss77.danger.ktlint.parser
+package io.github.bastosss77.danger.ktlint.parser
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
-import com.bastosss77.danger.ktlint.model.KtlintFileIssue
-import com.bastosss77.danger.ktlint.model.KtlintIssueReport
+import io.github.bastosss77.danger.ktlint.model.KtlintFileIssue
+import io.github.bastosss77.danger.ktlint.model.KtlintIssueReport
 import java.io.File
 
 internal class JsonReportParser : KtlintReportParser {

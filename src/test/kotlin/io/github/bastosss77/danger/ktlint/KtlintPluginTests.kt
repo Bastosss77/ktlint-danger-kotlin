@@ -1,16 +1,14 @@
-package com.bastosss77.danger.ktlint
+package io.github.bastosss77.danger.ktlint
 
 import io.mockk.confirmVerified
-import io.mockk.every
 import io.mockk.justRun
 import io.mockk.mockk
 import io.mockk.verify
-import com.bastosss77.danger.ktlint.KtlintPlugin
-import com.bastosss77.danger.ktlint.model.KtlintFileIssue
-import com.bastosss77.danger.ktlint.model.KtlintIssue
-import com.bastosss77.danger.ktlint.model.KtlintIssueReport
-import com.bastosss77.danger.ktlint.reporter.KtlintReporter
-import com.bastosss77.danger.ktlint.utils.TestResources
+import io.github.bastosss77.danger.ktlint.model.KtlintFileIssue
+import io.github.bastosss77.danger.ktlint.model.KtlintIssue
+import io.github.bastosss77.danger.ktlint.model.KtlintIssueReport
+import io.github.bastosss77.danger.ktlint.reporter.KtlintReporter
+import io.github.bastosss77.danger.ktlint.utils.TestResources
 import org.junit.jupiter.api.assertThrows
 import java.io.File
 import kotlin.test.AfterTest

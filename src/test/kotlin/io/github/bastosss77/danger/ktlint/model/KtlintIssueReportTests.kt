@@ -1,8 +1,8 @@
-package com.bastosss77.danger.ktlint.model
+package io.github.bastosss77.danger.ktlint.model
 
-import com.bastosss77.danger.ktlint.model.KtlintFileIssue
-import com.bastosss77.danger.ktlint.model.KtlintIssue
-import com.bastosss77.danger.ktlint.model.KtlintIssueReport
+import io.github.bastosss77.danger.ktlint.model.KtlintFileIssue
+import io.github.bastosss77.danger.ktlint.model.KtlintIssue
+import io.github.bastosss77.danger.ktlint.model.KtlintIssueReport
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

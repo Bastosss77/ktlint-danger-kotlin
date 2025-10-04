@@ -1,0 +1,25 @@
+[versions]
+kotlin = "2.2.20"
+ktlint = "1.7.1"
+ktlintGradle = "13.1.0"
+mavenPublish = "0.34.0"
+dangerKotlinSdk = "1.2"
+kotlinx-serialization = "1.9.0"
+mockk = "1.14.6"
+
+# Configuration
+version = "0.1.0"
+group = "io.github.bastosss77"
+jvmVersion = "21"
+
+[libraries]
+dangerSdk = { module = "systems.danger:danger-kotlin-sdk", version.ref = "dangerKotlinSdk" }
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin.test.junit", version.ref = "kotlin" }
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintGradle" }
+mavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }

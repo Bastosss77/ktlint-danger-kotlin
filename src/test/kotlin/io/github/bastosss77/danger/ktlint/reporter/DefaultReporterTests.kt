@@ -1,4 +1,4 @@
-package com.bastosss77.danger.ktlint.reporter
+package io.github.bastosss77.danger.ktlint.reporter
 
 import io.mockk.confirmVerified
 import io.mockk.justRun
@@ -7,7 +7,6 @@ import io.mockk.verify
 import com.bastosss77.danger.ktlint.model.KtlintFileIssue
 import com.bastosss77.danger.ktlint.model.KtlintIssue
 import com.bastosss77.danger.ktlint.model.KtlintIssueReport
-import com.bastosss77.danger.ktlint.reporter.DefaultReporter
 import systems.danger.kotlin.sdk.DangerContext
 import java.io.File
 import kotlin.test.AfterTest

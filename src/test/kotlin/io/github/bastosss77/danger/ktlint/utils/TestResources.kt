@@ -1,4 +1,4 @@
-package com.bastosss77.danger.ktlint.utils
+package io.github.bastosss77.danger.ktlint.utils
 
 import java.io.File
 

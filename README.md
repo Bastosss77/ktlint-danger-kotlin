@@ -8,7 +8,7 @@ Plugin for [Danger Kotlin](https://google.com]) to allow you to import, parse an
 
 Add the dependency to your `Dangerfile.df.kts`. You could check the last version available on [Maven Central]().
 
-```
+```kotlin
 @file:DependsOn("io.github.bastosss77:ktlint-danger-kotlin:LATEST")
 
 register.plugin(KtlintPlugin)
@@ -19,7 +19,7 @@ register.plugin(KtlintPlugin)
 Parse a file and create a report
 
 :warning: Currently, on Json format is supported 
-```
+```kotlin
 val file = File("my/path/to/ktlint/report.json")
 val report = KtlintPlugin.parse(file)
 
@@ -30,7 +30,7 @@ KtlintPlugin.report(report)
 
 You can also use multiple files
 
-```
+```kotlin
 val files = arrayOf(file1, file2)
 val report = KtlintPlugin.parse(files)
 
@@ -41,7 +41,7 @@ KtlintPlugin.report(report)
 
 In case the default reporter doesn't match your needs, you can implement your own by implementing the `KtlintReporter` interface.
 
-``` 
+```kotlin
 class MyReporter(val context: DangerContext) : KtlintReporter {
     override fun report(report: KtlintIssueReport) {
         //Do whatever you want

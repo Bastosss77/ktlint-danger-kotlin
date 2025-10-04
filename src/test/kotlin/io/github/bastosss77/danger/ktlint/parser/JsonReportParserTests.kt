@@ -1,10 +1,10 @@
-package com.bastosss77.danger.ktlint.parser
+package io.github.bastosss77.danger.ktlint.parser
 
 import com.bastosss77.danger.ktlint.utils.TestResources
 import com.bastosss77.danger.ktlint.model.KtlintFileIssue
 import com.bastosss77.danger.ktlint.model.KtlintIssue
 import com.bastosss77.danger.ktlint.model.KtlintIssueReport
-import com.bastosss77.danger.ktlint.parser.JsonReportParser
+import io.github.bastosss77.danger.ktlint.parser.JsonReportParser
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
