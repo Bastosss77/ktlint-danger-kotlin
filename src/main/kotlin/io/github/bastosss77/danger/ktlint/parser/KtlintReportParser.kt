@@ -1,6 +1,6 @@
 package io.github.bastosss77.danger.ktlint.parser
 
-import io.github.bastosss77.danger.ktlint.model.KtlintIssueReport
+import io.github.bastosss77.danger.ktlint.model.KtlintReport
 import java.io.File
 
 /**
@@ -11,5 +11,5 @@ internal interface KtlintReportParser {
     /**
      * Implement this function to parse a Ktlint report file
      */
-    fun parse(file: File): KtlintIssueReport
+    fun parse(file: File): KtlintReport
 }

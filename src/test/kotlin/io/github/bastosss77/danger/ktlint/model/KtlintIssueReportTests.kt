@@ -1,8 +1,6 @@
 package io.github.bastosss77.danger.ktlint.model
 
-import io.github.bastosss77.danger.ktlint.model.KtlintFileIssue
-import io.github.bastosss77.danger.ktlint.model.KtlintIssue
-import io.github.bastosss77.danger.ktlint.model.KtlintIssueReport
+import io.github.bastosss77.danger.ktlint.parser.json.model.JsonFileReport
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -11,7 +9,7 @@ import kotlin.test.assertTrue
 class KtlintIssueReportTests {
     @Test
     fun `Assert empty issue is clean`() {
-        val issue = KtlintIssueReport(emptySet())
+        val issue = KtlintReport(emptySet())
 
         assertTrue(issue.isClean)
     }
@@ -19,8 +17,8 @@ class KtlintIssueReportTests {
     @Test
     fun `Assert empty issue is not clean`() {
         val issue =
-            KtlintIssueReport(
-                setOf(KtlintFileIssue("", emptySet())),
+            KtlintReport(
+                setOf(FileIssueReport("", emptySet())),
             )
 
         assertFalse(issue.isClean)
@@ -29,24 +27,26 @@ class KtlintIssueReportTests {
     @Test
     fun `Assert no duplicated issue`() {
         val expectedReport =
-            KtlintIssueReport(
+            KtlintReport(
                 issues =
                     setOf(
-                        KtlintFileIssue(
-                            file = "fakeFile.kt",
+                        FileIssueReport(
+                            name = "fakeFile.kt",
                             issues =
                                 setOf(
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 13,
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = "standard:no-trailing-spaces",
+                                        severity = SeverityIssue.ERROR
                                     ),
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = "standard:final-newline",
+                                        severity = SeverityIssue.ERROR
                                     ),
                                 ),
                         ),
