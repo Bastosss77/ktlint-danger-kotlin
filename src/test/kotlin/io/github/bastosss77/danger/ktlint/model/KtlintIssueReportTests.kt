@@ -39,14 +39,14 @@ class KtlintIssueReportTests {
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = "standard:no-trailing-spaces",
-                                        severity = SeverityIssue.ERROR
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = "standard:final-newline",
-                                        severity = SeverityIssue.ERROR
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                 ),
                         ),

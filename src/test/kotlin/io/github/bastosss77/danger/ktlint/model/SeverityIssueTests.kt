@@ -5,7 +5,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 class SeverityIssueTests {
-
     @Test
     fun `test unknown severity returns null`() {
         assertNull(SeverityIssue.from("unknown"))

@@ -23,11 +23,15 @@ dependencies {
 }
 
 tasks.test {
-    //useJUnitPlatform()
+    // useJUnitPlatform()
 }
 
 kotlin {
-    jvmToolchain(libs.versions.jvmVersion.get().toInt())
+    jvmToolchain(
+        libs.versions.jvmVersion
+            .get()
+            .toInt(),
+    )
 }
 
 configure<KtlintExtension> {

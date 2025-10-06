@@ -1,14 +1,13 @@
 package io.github.bastosss77.danger.ktlint
 
 import io.github.bastosss77.danger.ktlint.model.KtlintReport
-import io.github.bastosss77.danger.ktlint.parser.json.JsonReportParser
 import io.github.bastosss77.danger.ktlint.parser.KtlintReportParser
+import io.github.bastosss77.danger.ktlint.parser.json.JsonReportParser
 import io.github.bastosss77.danger.ktlint.parser.xml.XMLReportParser
 import io.github.bastosss77.danger.ktlint.reporter.DefaultReporter
 import io.github.bastosss77.danger.ktlint.reporter.KtlintReporter
 import systems.danger.kotlin.sdk.DangerPlugin
 import java.io.File
-
 
 /**
  * Ktlint plugin for Danger Kotlin. Parse and report Ktlint issue on your pull requests
@@ -20,7 +19,7 @@ object KtlintPlugin : DangerPlugin() {
     private val parsers =
         mapOf(
             "json" to JsonReportParser(),
-            "xml" to XMLReportParser()
+            "xml" to XMLReportParser(),
         )
 
     /**
@@ -54,9 +53,10 @@ object KtlintPlugin : DangerPlugin() {
      */
     fun report(
         report: KtlintReport,
-        reporter: KtlintReporter = DefaultReporter(
-            context
-        ),
+        reporter: KtlintReporter =
+            DefaultReporter(
+                context,
+            ),
     ) {
         reporter.report(report)
     }

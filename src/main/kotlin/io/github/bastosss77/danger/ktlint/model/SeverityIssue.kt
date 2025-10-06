@@ -3,11 +3,12 @@ package io.github.bastosss77.danger.ktlint.model
 enum class SeverityIssue {
     ERROR,
     WARNING,
-    INFO;
+    INFO,
+    ;
 
     companion object {
         fun from(value: String): SeverityIssue? =
-            when(value) {
+            when (value) {
                 "error" -> ERROR
                 "warning" -> WARNING
                 "info" -> INFO

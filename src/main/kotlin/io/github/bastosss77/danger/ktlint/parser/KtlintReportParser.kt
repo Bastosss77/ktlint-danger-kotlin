@@ -7,7 +7,6 @@ import java.io.File
  * Interface to create a file parser for Ktlint report
  */
 internal interface KtlintReportParser {
-
     /**
      * Implement this function to parse a Ktlint report file
      */

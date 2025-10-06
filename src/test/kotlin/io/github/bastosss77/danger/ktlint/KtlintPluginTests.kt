@@ -1,23 +1,23 @@
 package io.github.bastosss77.danger.ktlint
 
 import io.github.bastosss77.danger.ktlint.model.FileIssueReport
+import io.github.bastosss77.danger.ktlint.model.IssueReport
+import io.github.bastosss77.danger.ktlint.model.KtlintReport
+import io.github.bastosss77.danger.ktlint.model.SeverityIssue
+import io.github.bastosss77.danger.ktlint.parser.json.model.JsonFileReport
+import io.github.bastosss77.danger.ktlint.reporter.KtlintReporter
+import io.github.bastosss77.danger.ktlint.utils.TestResources
 import io.mockk.confirmVerified
 import io.mockk.justRun
 import io.mockk.mockk
 import io.mockk.verify
-import io.github.bastosss77.danger.ktlint.parser.json.model.JsonFileReport
-import io.github.bastosss77.danger.ktlint.model.IssueReport
-import io.github.bastosss77.danger.ktlint.model.KtlintReport
-import io.github.bastosss77.danger.ktlint.model.SeverityIssue
-import io.github.bastosss77.danger.ktlint.reporter.KtlintReporter
-import io.github.bastosss77.danger.ktlint.utils.TestResources
 import org.junit.Assert.assertThrows
 import java.io.File
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-//TODO: Test severity
+// TODO: Test severity
 
 class KtlintPluginTests {
     private val mockReporter = mockk<KtlintReporter>()
@@ -30,7 +30,6 @@ class KtlintPluginTests {
     @Test
     fun `Parse unknown file extension`() {
         val file = File("fake.txt")
-
 
         assertThrows(IllegalArgumentException::class.java) {
             KtlintPlugin.parse(file)
@@ -53,21 +52,21 @@ class KtlintPluginTests {
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = "standard:no-trailing-spaces",
-                                        severity = null
+                                        severity = null,
                                     ),
                                     IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
                                         rule = "standard:function-naming",
-                                        severity = null
+                                        severity = null,
                                     ),
                                     IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = "standard:final-newline",
-                                        severity = null
+                                        severity = null,
                                     ),
                                 ),
                         ),
@@ -94,62 +93,64 @@ class KtlintPluginTests {
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = "standard:no-trailing-spaces",
-                                        severity = null
+                                        severity = null,
                                     ),
                                     IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
                                         rule = "standard:function-naming",
-                                        severity = null
+                                        severity = null,
                                     ),
                                     IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = "standard:final-newline",
-                                        severity = null
+                                        severity = null,
                                     ),
                                 ),
                         ),
                         FileIssueReport(
                             name = "Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/KtlintPlugin.kt",
-                            issues = setOf(
-                                IssueReport(
-                                    line = 11,
-                                    column = 1,
-                                    severity = SeverityIssue.ERROR,
-                                    message = "Needless blank line(s)",
-                                    rule = "standard:no-consecutive-blank-lines"
+                            issues =
+                                setOf(
+                                    IssueReport(
+                                        line = 11,
+                                        column = 1,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Needless blank line(s)",
+                                        rule = "standard:no-consecutive-blank-lines",
+                                    ),
+                                    IssueReport(
+                                        line = 56,
+                                        column = 20,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Missing trailing comma before \")\"",
+                                        rule = "standard:trailing-comma-on-call-site",
+                                    ),
                                 ),
-                                IssueReport(
-                                    line = 56,
-                                    column = 20,
-                                    severity = SeverityIssue.ERROR,
-                                    message = "Missing trailing comma before \")\"",
-                                    rule = "standard:trailing-comma-on-call-site"
-                                )
-                            )
                         ),
                         FileIssueReport(
                             name = "Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/model/KtlintFileIssue.kt",
-                            issues = setOf(
-                                IssueReport(
-                                    line = 10,
-                                    column = 33,
-                                    severity = SeverityIssue.ERROR,
-                                    message = "Missing trailing comma before \")\"",
-                                    rule = "standard:trailing-comma-on-declaration-site"
+                            issues =
+                                setOf(
+                                    IssueReport(
+                                        line = 10,
+                                        column = 33,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Missing trailing comma before \")\"",
+                                        rule = "standard:trailing-comma-on-declaration-site",
+                                    ),
+                                    IssueReport(
+                                        line = 11,
+                                        column = 1,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Unexpected blank line(s) in value parameter list",
+                                        rule = "standard:no-blank-line-in-list",
+                                    ),
                                 ),
-                                IssueReport(
-                                    line = 11,
-                                    column = 1,
-                                    severity = SeverityIssue.ERROR,
-                                    message = "Unexpected blank line(s) in value parameter list",
-                                    rule = "standard:no-blank-line-in-list"
-                                )
-                            )
-                        )
+                        ),
                     ),
             )
 
@@ -171,21 +172,21 @@ class KtlintPluginTests {
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = "standard:no-trailing-spaces",
-                                        severity = SeverityIssue.ERROR
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
                                         rule = "standard:function-naming",
-                                        severity = SeverityIssue.ERROR
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = "standard:final-newline",
-                                        severity = SeverityIssue.ERROR
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                 ),
                         ),

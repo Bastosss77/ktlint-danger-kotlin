@@ -18,11 +18,11 @@ object TestResources {
     object Xml {
         private const val FOLDER = "${TestResources.FOLDER}/xml"
 
-        val notEmpty = loadFile("${FOLDER}/not-empty.xml")
-        val empty = loadFile("${FOLDER}/empty.xml")
-        val duplicated = loadFile("${FOLDER}/duplicated.xml")
-        val malformed = loadFile("${FOLDER}/malformed.xml")
-        val emptyIssue = loadFile("${FOLDER}/empty-issue.xml")
+        val notEmpty = loadFile("$FOLDER/not-empty.xml")
+        val empty = loadFile("$FOLDER/empty.xml")
+        val duplicated = loadFile("$FOLDER/duplicated.xml")
+        val malformed = loadFile("$FOLDER/malformed.xml")
+        val emptyIssue = loadFile("$FOLDER/empty-issue.xml")
     }
 }
 

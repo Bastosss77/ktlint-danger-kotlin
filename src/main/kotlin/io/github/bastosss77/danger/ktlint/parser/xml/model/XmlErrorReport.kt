@@ -8,5 +8,5 @@ data class XmlErrorReport(
     val column: Int,
     val message: String,
     val source: String,
-    val severity: String
+    val severity: String,
 )

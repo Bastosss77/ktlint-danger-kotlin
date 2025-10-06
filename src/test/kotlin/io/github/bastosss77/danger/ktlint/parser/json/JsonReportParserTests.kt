@@ -38,21 +38,21 @@ class JsonReportParserTests {
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = "standard:no-trailing-spaces",
-                                        severity = null
+                                        severity = null,
                                     ),
                                     IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
                                         rule = "standard:function-naming",
-                                        severity = null
+                                        severity = null,
                                     ),
                                     IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = "standard:final-newline",
-                                        severity = null
+                                        severity = null,
                                     ),
                                 ),
                         ),
@@ -95,14 +95,14 @@ class JsonReportParserTests {
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = "standard:no-trailing-spaces",
-                                        severity = null
+                                        severity = null,
                                     ),
                                     IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = "standard:final-newline",
-                                        severity = null
+                                        severity = null,
                                     ),
                                 ),
                         ),

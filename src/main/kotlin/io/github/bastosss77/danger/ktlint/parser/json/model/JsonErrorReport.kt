@@ -7,5 +7,5 @@ data class JsonErrorReport(
     val line: Int,
     val column: Int,
     val message: String,
-    val rule: String
+    val rule: String,
 )

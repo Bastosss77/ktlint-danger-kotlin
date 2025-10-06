@@ -25,20 +25,24 @@ internal class JsonReportParser : KtlintReportParser {
     }
 }
 
-private fun mapToKtlintReport(issues: Set<JsonFileReport>) : KtlintReport =
+private fun mapToKtlintReport(issues: Set<JsonFileReport>): KtlintReport =
     KtlintReport(
-        issues = issues.map { jsonFileReport ->
-            FileIssueReport(
-                name = jsonFileReport.file,
-                issues = jsonFileReport.errors.map { jsonIssueReport ->
-                    IssueReport(
-                        line = jsonIssueReport.line,
-                        column = jsonIssueReport.column,
-                        message = jsonIssueReport.message,
-                        rule = jsonIssueReport.rule,
-                        severity = null
+        issues =
+            issues
+                .map { jsonFileReport ->
+                    FileIssueReport(
+                        name = jsonFileReport.file,
+                        issues =
+                            jsonFileReport.errors
+                                .map { jsonIssueReport ->
+                                    IssueReport(
+                                        line = jsonIssueReport.line,
+                                        column = jsonIssueReport.column,
+                                        message = jsonIssueReport.message,
+                                        rule = jsonIssueReport.rule,
+                                        severity = null,
+                                    )
+                                }.toSet(),
                     )
-                }.toSet()
-            )
-        }.toSet()
+                }.toSet(),
     )

@@ -14,27 +14,30 @@ import nl.adaptivity.xmlutil.serialization.XmlSerialName
 @XmlSerialName("checkstyle")
 data class XmlReport(
     val version: String,
-
     @XmlElement(true)
-    val file: List<XmlFileReport>
+    val file: List<XmlFileReport>,
 )
 
-fun XmlReport.mapToKtlintReport() : KtlintReport =
+fun XmlReport.mapToKtlintReport(): KtlintReport =
     KtlintReport(
-        issues = file.mapNotNull { xmlFileReport ->
-            if(xmlFileReport.errors.isEmpty()) return@mapNotNull null
+        issues =
+            file
+                .mapNotNull { xmlFileReport ->
+                    if (xmlFileReport.errors.isEmpty()) return@mapNotNull null
 
-            FileIssueReport(
-                name = xmlFileReport.name,
-                issues = xmlFileReport.errors.map { xmlError ->
-                    IssueReport(
-                        line = xmlError.line,
-                        column = xmlError.column,
-                        message = xmlError.message,
-                        rule = xmlError.source,
-                        severity = SeverityIssue.from(xmlError.severity)
+                    FileIssueReport(
+                        name = xmlFileReport.name,
+                        issues =
+                            xmlFileReport.errors
+                                .map { xmlError ->
+                                    IssueReport(
+                                        line = xmlError.line,
+                                        column = xmlError.column,
+                                        message = xmlError.message,
+                                        rule = xmlError.source,
+                                        severity = SeverityIssue.from(xmlError.severity),
+                                    )
+                                }.toSet(),
                     )
-                }.toSet()
-            )
-        }.toSet()
+                }.toSet(),
     )

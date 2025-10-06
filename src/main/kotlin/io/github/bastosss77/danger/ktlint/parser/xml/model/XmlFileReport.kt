@@ -6,9 +6,8 @@ import nl.adaptivity.xmlutil.serialization.XmlSerialName
 @Serializable
 @XmlSerialName("file", "", "")
 data class XmlFileReport(
-
     @XmlSerialName("name")
     val name: String,
     @XmlSerialName("error")
-    val errors: List<XmlErrorReport>
+    val errors: List<XmlErrorReport>,
 )

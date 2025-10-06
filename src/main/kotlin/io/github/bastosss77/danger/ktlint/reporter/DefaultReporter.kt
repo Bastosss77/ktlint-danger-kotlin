@@ -10,7 +10,7 @@ internal class DefaultReporter(
 ) : KtlintReporter {
     private val rootPath = File("").absolutePath
 
-    //TODO: Add message with count of issues
+    // TODO: Add message with count of issues
 
     override fun report(report: KtlintReport) {
         if (!report.isClean) {

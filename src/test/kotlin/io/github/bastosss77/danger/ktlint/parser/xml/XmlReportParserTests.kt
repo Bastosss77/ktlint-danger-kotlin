@@ -26,53 +26,56 @@ class XmlReportParserTests {
     @Test
     fun `Parse report with issues`() {
         val file = TestResources.Xml.notEmpty
-        val expectedReport = KtlintReport(
-            issues = setOf(
-                FileIssueReport(
-                    name = "Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/KtlintPlugin.kt",
-                    issues = setOf(
-                        IssueReport(
-                            line = 11,
-                            column = 1,
-                            severity = SeverityIssue.ERROR,
-                            message = "Needless blank line(s)",
-                            rule = "standard:no-consecutive-blank-lines"
+        val expectedReport =
+            KtlintReport(
+                issues =
+                    setOf(
+                        FileIssueReport(
+                            name = "Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/KtlintPlugin.kt",
+                            issues =
+                                setOf(
+                                    IssueReport(
+                                        line = 11,
+                                        column = 1,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Needless blank line(s)",
+                                        rule = "standard:no-consecutive-blank-lines",
+                                    ),
+                                    IssueReport(
+                                        line = 56,
+                                        column = 20,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Missing trailing comma before \")\"",
+                                        rule = "standard:trailing-comma-on-call-site",
+                                    ),
+                                ),
                         ),
-                        IssueReport(
-                            line = 56,
-                            column = 20,
-                            severity = SeverityIssue.ERROR,
-                            message = "Missing trailing comma before \")\"",
-                            rule = "standard:trailing-comma-on-call-site"
-                        )
-                    )
-                ),
-                FileIssueReport(
-                    name = "Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/model/KtlintFileIssue.kt",
-                    issues = setOf(
-                        IssueReport(
-                            line = 10,
-                            column = 33,
-                            severity = SeverityIssue.ERROR,
-                            message = "Missing trailing comma before \")\"",
-                            rule = "standard:trailing-comma-on-declaration-site"
+                        FileIssueReport(
+                            name = "Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/model/KtlintFileIssue.kt",
+                            issues =
+                                setOf(
+                                    IssueReport(
+                                        line = 10,
+                                        column = 33,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Missing trailing comma before \")\"",
+                                        rule = "standard:trailing-comma-on-declaration-site",
+                                    ),
+                                    IssueReport(
+                                        line = 11,
+                                        column = 1,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Unexpected blank line(s) in value parameter list",
+                                        rule = "standard:no-blank-line-in-list",
+                                    ),
+                                ),
                         ),
-                        IssueReport(
-                            line = 11,
-                            column = 1,
-                            severity = SeverityIssue.ERROR,
-                            message = "Unexpected blank line(s) in value parameter list",
-                            rule = "standard:no-blank-line-in-list"
-                        )
-                    )
-                )
+                    ),
             )
-        )
 
         val report = parser.parse(file)
 
         assertEquals(expectedReport, report)
-
     }
 
     @Test
@@ -94,34 +97,38 @@ class XmlReportParserTests {
     @Test
     fun `Parse duplicated issue`() {
         val file = TestResources.Xml.duplicated
-        val expectedReport = KtlintReport(
-            issues = setOf(
-                FileIssueReport(
-                    name = "Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/KtlintPlugin.kt",
-                    issues = setOf(
-                        IssueReport(
-                            line = 11,
-                            column = 1,
-                            severity = SeverityIssue.ERROR,
-                            message = "Needless blank line(s)",
-                            rule = "standard:no-consecutive-blank-lines"
-                        )
-                    )
-                ),
-                FileIssueReport(
-                    name = "Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/model/KtlintFileIssue.kt",
-                    issues = setOf(
-                        IssueReport(
-                            line = 10,
-                            column = 33,
-                            severity = SeverityIssue.ERROR,
-                            message = "Missing trailing comma before \")\"",
-                            rule = "standard:trailing-comma-on-declaration-site"
-                        )
-                    )
-                )
+        val expectedReport =
+            KtlintReport(
+                issues =
+                    setOf(
+                        FileIssueReport(
+                            name = "Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/KtlintPlugin.kt",
+                            issues =
+                                setOf(
+                                    IssueReport(
+                                        line = 11,
+                                        column = 1,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Needless blank line(s)",
+                                        rule = "standard:no-consecutive-blank-lines",
+                                    ),
+                                ),
+                        ),
+                        FileIssueReport(
+                            name = "Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/model/KtlintFileIssue.kt",
+                            issues =
+                                setOf(
+                                    IssueReport(
+                                        line = 10,
+                                        column = 33,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Missing trailing comma before \")\"",
+                                        rule = "standard:trailing-comma-on-declaration-site",
+                                    ),
+                                ),
+                        ),
+                    ),
             )
-        )
 
         val report = parser.parse(file)
 
