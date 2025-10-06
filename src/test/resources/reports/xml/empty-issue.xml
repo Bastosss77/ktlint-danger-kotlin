@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle version="8.0">
+    <file name="Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/KtlintPlugin.kt">
+    </file>
+    <file name="Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/model/KtlintFileIssue.kt">
+    </file>
+</checkstyle>

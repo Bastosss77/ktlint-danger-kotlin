@@ -1,12 +1,14 @@
 package io.github.bastosss77.danger.ktlint.reporter
 
+import io.github.bastosss77.danger.ktlint.model.FileIssueReport
+import io.github.bastosss77.danger.ktlint.model.IssueReport
+import io.github.bastosss77.danger.ktlint.model.KtlintReport
+import io.github.bastosss77.danger.ktlint.model.SeverityIssue
+import io.github.bastosss77.danger.ktlint.parser.json.model.JsonFileReport
 import io.mockk.confirmVerified
 import io.mockk.justRun
 import io.mockk.mockk
 import io.mockk.verify
-import com.bastosss77.danger.ktlint.model.KtlintFileIssue
-import com.bastosss77.danger.ktlint.model.KtlintIssue
-import com.bastosss77.danger.ktlint.model.KtlintIssueReport
 import systems.danger.kotlin.sdk.DangerContext
 import java.io.File
 import kotlin.test.AfterTest
@@ -23,7 +25,7 @@ class DefaultReporterTests {
 
     @Test
     fun `Report with clean Ktlint report`() {
-        val expectedReport = KtlintIssueReport(emptySet())
+        val expectedReport = KtlintReport(emptySet())
 
         reporter.report(expectedReport)
     }
@@ -31,11 +33,11 @@ class DefaultReporterTests {
     @Test
     fun `Report where Ktlint report has empty issues`() {
         val expectedReport =
-            KtlintIssueReport(
+            KtlintReport(
                 issues =
                     setOf(
-                        KtlintFileIssue(
-                            file = "fake",
+                        FileIssueReport(
+                            name = "fake",
                             issues = emptySet(),
                         ),
                     ),
@@ -47,54 +49,60 @@ class DefaultReporterTests {
     @Test
     fun `Report where Ktlint report has issues`() {
         val expectedReport =
-            KtlintIssueReport(
+            KtlintReport(
                 issues =
                     setOf(
-                        KtlintFileIssue(
-                            file = "fakeFile.kt",
+                        FileIssueReport(
+                            name = "fakeFile.kt",
                             issues =
                                 setOf(
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 13,
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = "standard:no-trailing-spaces",
+                                        severity = SeverityIssue.ERROR,
                                     ),
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
                                         rule = "standard:function-naming",
+                                        severity = SeverityIssue.ERROR,
                                     ),
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = "standard:final-newline",
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                 ),
                         ),
-                        KtlintFileIssue(
-                            file = "fakeFile2.kt",
+                        FileIssueReport(
+                            name = "fakeFile2.kt",
                             issues =
                                 setOf(
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 13,
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = "standard:no-trailing-spaces",
+                                        severity = SeverityIssue.ERROR,
                                     ),
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
                                         rule = "standard:function-naming",
+                                        severity = SeverityIssue.ERROR,
                                     ),
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = "standard:final-newline",
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                 ),
                         ),
@@ -119,54 +127,60 @@ class DefaultReporterTests {
         val root = File("").absolutePath
 
         val expectedReport =
-            KtlintIssueReport(
+            KtlintReport(
                 issues =
                     setOf(
-                        KtlintFileIssue(
-                            file = root,
+                        FileIssueReport(
+                            name = root,
                             issues =
                                 setOf(
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 13,
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = "standard:no-trailing-spaces",
+                                        severity = SeverityIssue.ERROR,
                                     ),
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
                                         rule = "standard:function-naming",
+                                        severity = SeverityIssue.ERROR,
                                     ),
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = "standard:final-newline",
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                 ),
                         ),
-                        KtlintFileIssue(
-                            file = root,
+                        FileIssueReport(
+                            name = root,
                             issues =
                                 setOf(
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 13,
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = "standard:no-trailing-spaces",
+                                        severity = SeverityIssue.ERROR,
                                     ),
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
                                         rule = "standard:function-naming",
+                                        severity = SeverityIssue.ERROR,
                                     ),
-                                    KtlintIssue(
+                                    IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = "standard:final-newline",
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                 ),
                         ),
@@ -181,13 +195,13 @@ class DefaultReporterTests {
             fileIssue.issues.forEach { issue ->
                 val message = prepareMessage(issue)
 
-                verify { mockContext.fail(message, fileIssue.file, issue.line) }
+                verify { mockContext.fail(message, fileIssue.name, issue.line) }
             }
         }
     }
 }
 
-private fun prepareMessage(issue: KtlintIssue): String =
+private fun prepareMessage(issue: IssueReport): String =
     """
     **Ktlint** : ${issue.message}
     **Rule** : ${issue.rule}

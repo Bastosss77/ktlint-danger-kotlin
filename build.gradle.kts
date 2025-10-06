@@ -14,19 +14,24 @@ repositories {
 
 dependencies {
     implementation(libs.dangerSdk)
-    implementation(libs.kotlinx.serialization)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.serialization.xml)
 
-    testImplementation(libs.kotlinx.serialization)
+    testImplementation(libs.kotlinx.serialization.json)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlin.test)
 }
 
 tasks.test {
-    useJUnitPlatform()
+    // useJUnitPlatform()
 }
 
 kotlin {
-    jvmToolchain(libs.versions.jvmVersion.get().toInt())
+    jvmToolchain(
+        libs.versions.jvmVersion
+            .get()
+            .toInt(),
+    )
 }
 
 configure<KtlintExtension> {

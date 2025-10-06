@@ -1,16 +1,16 @@
 package io.github.bastosss77.danger.ktlint.model
 
-data class KtlintIssueReport(
-    val issues: Set<KtlintFileIssue>,
+data class KtlintReport(
+    val issues: Set<FileIssueReport>,
 ) {
     val isClean = issues.isEmpty()
 
-    operator fun plus(report: KtlintIssueReport): KtlintIssueReport {
+    operator fun plus(report: KtlintReport): KtlintReport {
         val mutableIssues =
             issues.toMutableSet().apply {
                 addAll(report.issues)
             }
 
-        return KtlintIssueReport(mutableIssues.toSet())
+        return KtlintReport(mutableIssues.toSet())
     }
 }
