@@ -54,7 +54,7 @@ KtlintPlugin.report(report, MyReporter(context))
 
 ## Todo
 
-- [ ] Use a Regex to find Ktlint files
+- [x] Use a Regex to find Ktlint files
 - [x] Parse Sarif
 - [x] Parse XML
 - [ ] Parse txt
