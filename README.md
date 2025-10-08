@@ -55,8 +55,11 @@ KtlintPlugin.report(report, MyReporter(context))
 ## Todo
 
 - [ ] Use a Regex to find Ktlint files
-- [ ] Parse Sarif
+- [x] Parse Sarif
 - [x] Parse XML
+- [ ] Parse txt
+- [ ] Display errors count
+- [ ] Map errors by rule
 
 ## Note
 This plugin is inspired by [pavelkorolevxyz Detekt plugin](https://github.com/pavelkorolevxyz/danger-detekt-kotlin/tree/main?tab=readme-ov-file)

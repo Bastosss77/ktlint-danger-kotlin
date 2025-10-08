@@ -24,6 +24,16 @@ object TestResources {
         val malformed = loadFile("$FOLDER/malformed.xml")
         val emptyIssue = loadFile("$FOLDER/empty-issue.xml")
     }
+
+    object Sarif {
+        private const val FOLDER = "${TestResources.FOLDER}/sarif"
+
+        val notEmpty = loadFile("${FOLDER}/not-empty.sarif")
+        val empty = loadFile("${FOLDER}/empty.sarif")
+        val duplicated = loadFile("${FOLDER}/duplicated.sarif")
+        val malformed = loadFile("${FOLDER}/malformed.sarif")
+        val emptyIssue = loadFile("${FOLDER}/empty-issue.sarif")
+    }
 }
 
 internal fun loadFile(fileName: String): File = File(ClassLoader.getSystemResource(fileName).toURI())

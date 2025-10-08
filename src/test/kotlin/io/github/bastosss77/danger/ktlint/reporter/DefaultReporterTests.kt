@@ -3,6 +3,7 @@ package io.github.bastosss77.danger.ktlint.reporter
 import io.github.bastosss77.danger.ktlint.model.FileIssueReport
 import io.github.bastosss77.danger.ktlint.model.IssueReport
 import io.github.bastosss77.danger.ktlint.model.KtlintReport
+import io.github.bastosss77.danger.ktlint.model.RuleReport
 import io.github.bastosss77.danger.ktlint.model.SeverityIssue
 import io.github.bastosss77.danger.ktlint.parser.json.model.JsonFileReport
 import io.mockk.confirmVerified
@@ -60,21 +61,21 @@ class DefaultReporterTests {
                                         line = 13,
                                         column = 1,
                                         message = "Trailing space(s)",
-                                        rule = "standard:no-trailing-spaces",
+                                        rule = RuleReport.Standard("no-trailing-spaces"),
                                         severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
-                                        rule = "standard:function-naming",
+                                        rule = RuleReport.Standard("function-naming"),
                                         severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
-                                        rule = "standard:final-newline",
+                                        rule = RuleReport.Standard("final-newline"),
                                         severity = SeverityIssue.ERROR,
                                     ),
                                 ),
@@ -87,21 +88,21 @@ class DefaultReporterTests {
                                         line = 13,
                                         column = 1,
                                         message = "Trailing space(s)",
-                                        rule = "standard:no-trailing-spaces",
+                                        rule = RuleReport.Standard("no-trailing-spaces"),
                                         severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
-                                        rule = "standard:function-naming",
+                                        rule = RuleReport.Standard("function-naming"),
                                         severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
-                                        rule = "standard:final-newline",
+                                        rule = RuleReport.Standard("final-newline"),
                                         severity = SeverityIssue.ERROR,
                                     ),
                                 ),
@@ -138,21 +139,21 @@ class DefaultReporterTests {
                                         line = 13,
                                         column = 1,
                                         message = "Trailing space(s)",
-                                        rule = "standard:no-trailing-spaces",
+                                        rule = RuleReport.Standard("no-trailing-spaces"),
                                         severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
-                                        rule = "standard:function-naming",
+                                        rule = RuleReport.Standard("function-naming"),
                                         severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
-                                        rule = "standard:final-newline",
+                                        rule = RuleReport.Standard("final-newline"),
                                         severity = SeverityIssue.ERROR,
                                     ),
                                 ),
@@ -165,21 +166,21 @@ class DefaultReporterTests {
                                         line = 13,
                                         column = 1,
                                         message = "Trailing space(s)",
-                                        rule = "standard:no-trailing-spaces",
+                                        rule = RuleReport.Standard("no-trailing-spaces"),
                                         severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
-                                        rule = "standard:function-naming",
+                                        rule = RuleReport.Standard("function-naming"),
                                         severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
-                                        rule = "standard:final-newline",
+                                        rule = RuleReport.Standard("final-newline"),
                                         severity = SeverityIssue.ERROR,
                                     ),
                                 ),
@@ -204,5 +205,5 @@ class DefaultReporterTests {
 private fun prepareMessage(issue: IssueReport): String =
     """
     **Ktlint** : ${issue.message}
-    **Rule** : ${issue.rule}
+    **Rule** : ${issue.rule.fullName}
     """.trimIndent()

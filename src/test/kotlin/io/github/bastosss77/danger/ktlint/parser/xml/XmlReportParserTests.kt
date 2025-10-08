@@ -3,6 +3,7 @@ package io.github.bastosss77.danger.ktlint.parser.xml
 import io.github.bastosss77.danger.ktlint.model.FileIssueReport
 import io.github.bastosss77.danger.ktlint.model.IssueReport
 import io.github.bastosss77.danger.ktlint.model.KtlintReport
+import io.github.bastosss77.danger.ktlint.model.RuleReport
 import io.github.bastosss77.danger.ktlint.model.SeverityIssue
 import io.github.bastosss77.danger.ktlint.utils.TestResources
 import kotlin.test.Test
@@ -39,14 +40,14 @@ class XmlReportParserTests {
                                         column = 1,
                                         severity = SeverityIssue.ERROR,
                                         message = "Needless blank line(s)",
-                                        rule = "standard:no-consecutive-blank-lines",
+                                        rule = RuleReport.Standard("no-consecutive-blank-lines"),
                                     ),
                                     IssueReport(
                                         line = 56,
                                         column = 20,
                                         severity = SeverityIssue.ERROR,
                                         message = "Missing trailing comma before \")\"",
-                                        rule = "standard:trailing-comma-on-call-site",
+                                        rule = RuleReport.Standard("trailing-comma-on-call-site"),
                                     ),
                                 ),
                         ),
@@ -59,14 +60,14 @@ class XmlReportParserTests {
                                         column = 33,
                                         severity = SeverityIssue.ERROR,
                                         message = "Missing trailing comma before \")\"",
-                                        rule = "standard:trailing-comma-on-declaration-site",
+                                        rule = RuleReport.Standard("trailing-comma-on-declaration-site"),
                                     ),
                                     IssueReport(
                                         line = 11,
                                         column = 1,
                                         severity = SeverityIssue.ERROR,
                                         message = "Unexpected blank line(s) in value parameter list",
-                                        rule = "standard:no-blank-line-in-list",
+                                        rule = RuleReport.Standard("no-blank-line-in-list"),
                                     ),
                                 ),
                         ),
@@ -110,7 +111,7 @@ class XmlReportParserTests {
                                         column = 1,
                                         severity = SeverityIssue.ERROR,
                                         message = "Needless blank line(s)",
-                                        rule = "standard:no-consecutive-blank-lines",
+                                        rule = RuleReport.Standard("no-consecutive-blank-lines"),
                                     ),
                                 ),
                         ),
@@ -123,7 +124,7 @@ class XmlReportParserTests {
                                         column = 33,
                                         severity = SeverityIssue.ERROR,
                                         message = "Missing trailing comma before \")\"",
-                                        rule = "standard:trailing-comma-on-declaration-site",
+                                        rule = RuleReport.Standard("trailing-comma-on-declaration-site"),
                                     ),
                                 ),
                         ),
