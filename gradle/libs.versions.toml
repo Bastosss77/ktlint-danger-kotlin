@@ -9,7 +9,7 @@ kotlinx-serialization-xml = "0.91.2"
 mockk = "1.14.6"
 
 # Configuration
-version = "0.3.0"
+version = "0.3.1"
 group = "io.github.bastosss77"
 jvmVersion = "21"
 
