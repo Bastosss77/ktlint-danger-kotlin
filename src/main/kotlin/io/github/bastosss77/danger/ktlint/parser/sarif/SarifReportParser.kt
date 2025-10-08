@@ -11,14 +11,16 @@ import kotlinx.serialization.json.decodeFromStream
 import java.io.File
 
 class SarifReportParser : KtlintReportParser {
-    private val json = Json {
-        ignoreUnknownKeys = true
-    }
+    private val json =
+        Json {
+            ignoreUnknownKeys = true
+        }
 
     @OptIn(ExperimentalSerializationApi::class)
     override fun parse(file: File): KtlintReport {
-        val sarifReport = json
-            .decodeFromStream<SarifReport>(file.inputStream())
+        val sarifReport =
+            json
+                .decodeFromStream<SarifReport>(file.inputStream())
 
         return sarifReport.mapToKtlintReport()
     }

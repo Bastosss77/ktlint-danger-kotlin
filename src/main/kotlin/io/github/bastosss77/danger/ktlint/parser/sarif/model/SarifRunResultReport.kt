@@ -7,5 +7,5 @@ data class SarifRunResultReport(
     val level: String,
     val locations: List<SarifRunResultLocationReport>,
     val message: SarifRunResultMessageReport,
-    val ruleId: String
+    val ruleId: String,
 )

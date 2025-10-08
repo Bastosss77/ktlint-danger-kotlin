@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SarifRunResultMessageReport(
-    val text: String
+    val text: String,
 )

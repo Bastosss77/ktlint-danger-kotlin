@@ -5,7 +5,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFails
 
 class RuleReportTest {
-
     @Test
     fun `test rule mapping`() {
         assertEquals(RuleReport.Standard("rule"), RuleReport.parse("standard:rule"))

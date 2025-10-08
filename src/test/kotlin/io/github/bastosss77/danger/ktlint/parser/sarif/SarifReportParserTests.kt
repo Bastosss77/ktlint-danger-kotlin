@@ -25,41 +25,44 @@ class SarifReportParserTests {
     @Test
     fun `Parse report with issues`() {
         val file = TestResources.Sarif.notEmpty
-        val expectedReport = KtlintReport(
-            setOf(
-                FileIssueReport(
-                    name = "Documents/Perso/Projects/ktlint-danger-kotlin/build.gradle.kts",
-                    issues = setOf(
-                        IssueReport(
-                            line = 26,
-                            column = 5,
-                            message = "Missing space after //",
-                            rule = RuleReport.Standard("comment-spacing"),
-                            severity = SeverityIssue.ERROR
-                        ),
-                        IssueReport(
-                            line = 30,
-                            column = 42,
-                            message = "Expected newline before '.'",
-                            rule = RuleReport.Standard("chain-method-continuation"),
-                            severity = SeverityIssue.ERROR
-                        )
-                    )
+        val expectedReport =
+            KtlintReport(
+                setOf(
+                    FileIssueReport(
+                        name = "Documents/Perso/Projects/ktlint-danger-kotlin/build.gradle.kts",
+                        issues =
+                            setOf(
+                                IssueReport(
+                                    line = 26,
+                                    column = 5,
+                                    message = "Missing space after //",
+                                    rule = RuleReport.Standard("comment-spacing"),
+                                    severity = SeverityIssue.ERROR,
+                                ),
+                                IssueReport(
+                                    line = 30,
+                                    column = 42,
+                                    message = "Expected newline before '.'",
+                                    rule = RuleReport.Standard("chain-method-continuation"),
+                                    severity = SeverityIssue.ERROR,
+                                ),
+                            ),
+                    ),
+                    FileIssueReport(
+                        name = "Documents/Perso/Projects/ktlint-danger-kotlin/SarifReportParser.kt",
+                        issues =
+                            setOf(
+                                IssueReport(
+                                    line = 30,
+                                    column = 48,
+                                    message = "Expected newline before '.'",
+                                    rule = RuleReport.Standard("chain-method-continuation"),
+                                    severity = SeverityIssue.ERROR,
+                                ),
+                            ),
+                    ),
                 ),
-                FileIssueReport(
-                    name = "Documents/Perso/Projects/ktlint-danger-kotlin/SarifReportParser.kt",
-                    issues = setOf(
-                        IssueReport(
-                            line = 30,
-                            column = 48,
-                            message = "Expected newline before '.'",
-                            rule = RuleReport.Standard("chain-method-continuation"),
-                            severity = SeverityIssue.ERROR
-                        )
-                    )
-                )
             )
-        )
 
         val report = parser.parse(file)
 
@@ -70,34 +73,37 @@ class SarifReportParserTests {
     fun `Parse report and remove empty issues`() {
         val file = TestResources.Sarif.emptyIssue
 
-        val expectedReport = KtlintReport(
-            setOf(
-                FileIssueReport(
-                    name = "Documents/Perso/Projects/ktlint-danger-kotlin/build.gradle.kts",
-                    issues = setOf(
-                        IssueReport(
-                            line = 30,
-                            column = 42,
-                            message = "Expected newline before '.'",
-                            rule = RuleReport.Standard("chain-method-continuation"),
-                            severity = SeverityIssue.ERROR
-                        )
-                    )
+        val expectedReport =
+            KtlintReport(
+                setOf(
+                    FileIssueReport(
+                        name = "Documents/Perso/Projects/ktlint-danger-kotlin/build.gradle.kts",
+                        issues =
+                            setOf(
+                                IssueReport(
+                                    line = 30,
+                                    column = 42,
+                                    message = "Expected newline before '.'",
+                                    rule = RuleReport.Standard("chain-method-continuation"),
+                                    severity = SeverityIssue.ERROR,
+                                ),
+                            ),
+                    ),
+                    FileIssueReport(
+                        name = "Documents/Perso/Projects/ktlint-danger-kotlin/SarifReportParser.kt",
+                        issues =
+                            setOf(
+                                IssueReport(
+                                    line = 30,
+                                    column = 48,
+                                    message = "Expected newline before '.'",
+                                    rule = RuleReport.Standard("chain-method-continuation"),
+                                    severity = SeverityIssue.ERROR,
+                                ),
+                            ),
+                    ),
                 ),
-                FileIssueReport(
-                    name = "Documents/Perso/Projects/ktlint-danger-kotlin/SarifReportParser.kt",
-                    issues = setOf(
-                        IssueReport(
-                            line = 30,
-                            column = 48,
-                            message = "Expected newline before '.'",
-                            rule = RuleReport.Standard("chain-method-continuation"),
-                            severity = SeverityIssue.ERROR
-                        )
-                    )
-                )
             )
-        )
 
         val report = parser.parse(file)
 
@@ -114,22 +120,24 @@ class SarifReportParserTests {
     @Test
     fun `Parse duplicated issue`() {
         val file = TestResources.Sarif.duplicated
-        val expectedReport = KtlintReport(
-            setOf(
-                FileIssueReport(
-                    name = "Documents/Perso/Projects/ktlint-danger-kotlin/build.gradle.kts",
-                    issues = setOf(
-                        IssueReport(
-                            line = 26,
-                            column = 5,
-                            message = "Missing space after //",
-                            rule = RuleReport.Standard("comment-spacing"),
-                            severity = SeverityIssue.ERROR
-                        )
-                    )
-                )
+        val expectedReport =
+            KtlintReport(
+                setOf(
+                    FileIssueReport(
+                        name = "Documents/Perso/Projects/ktlint-danger-kotlin/build.gradle.kts",
+                        issues =
+                            setOf(
+                                IssueReport(
+                                    line = 26,
+                                    column = 5,
+                                    message = "Missing space after //",
+                                    rule = RuleReport.Standard("comment-spacing"),
+                                    severity = SeverityIssue.ERROR,
+                                ),
+                            ),
+                    ),
+                ),
             )
-        )
 
         val report = parser.parse(file)
 
