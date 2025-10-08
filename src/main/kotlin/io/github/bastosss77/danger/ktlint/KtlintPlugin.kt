@@ -3,6 +3,7 @@ package io.github.bastosss77.danger.ktlint
 import io.github.bastosss77.danger.ktlint.model.KtlintReport
 import io.github.bastosss77.danger.ktlint.parser.KtlintReportParser
 import io.github.bastosss77.danger.ktlint.parser.json.JsonReportParser
+import io.github.bastosss77.danger.ktlint.parser.sarif.SarifReportParser
 import io.github.bastosss77.danger.ktlint.parser.xml.XMLReportParser
 import io.github.bastosss77.danger.ktlint.reporter.DefaultReporter
 import io.github.bastosss77.danger.ktlint.reporter.KtlintReporter
@@ -20,6 +21,7 @@ object KtlintPlugin : DangerPlugin() {
         mapOf(
             "json" to JsonReportParser(),
             "xml" to XMLReportParser(),
+            "sarif" to SarifReportParser()
         )
 
     /**

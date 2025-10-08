@@ -76,6 +76,104 @@ class KtlintPluginTests {
     }
 
     @Test
+    fun `Parse xml file`() {
+        val file = TestResources.Xml.notEmpty
+        val expectedReport =
+            KtlintReport(
+                issues =
+                    setOf(
+                        FileIssueReport(
+                            name = "Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/KtlintPlugin.kt",
+                            issues =
+                                setOf(
+                                    IssueReport(
+                                        line = 11,
+                                        column = 1,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Needless blank line(s)",
+                                        rule = RuleReport.Standard("no-consecutive-blank-lines"),
+                                    ),
+                                    IssueReport(
+                                        line = 56,
+                                        column = 20,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Missing trailing comma before \")\"",
+                                        rule = RuleReport.Standard("trailing-comma-on-call-site"),
+                                    ),
+                                ),
+                        ),
+                        FileIssueReport(
+                            name = "Projects/ktlint-danger-kotlin/src/main/kotlin/io/github/bastosss77/danger/ktlint/model/KtlintFileIssue.kt",
+                            issues =
+                                setOf(
+                                    IssueReport(
+                                        line = 10,
+                                        column = 33,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Missing trailing comma before \")\"",
+                                        rule = RuleReport.Standard("trailing-comma-on-declaration-site"),
+                                    ),
+                                    IssueReport(
+                                        line = 11,
+                                        column = 1,
+                                        severity = SeverityIssue.ERROR,
+                                        message = "Unexpected blank line(s) in value parameter list",
+                                        rule = RuleReport.Standard("no-blank-line-in-list"),
+                                    ),
+                                ),
+                        ),
+                    ),
+            )
+
+        assertEquals(expectedReport, KtlintPlugin.parse(file))
+    }
+
+    @Test
+    fun `Parse sarif file`() {
+        val file = TestResources.Sarif.notEmpty
+        val expectedReport =
+            KtlintReport(
+                setOf(
+                    FileIssueReport(
+                        name = "Documents/Perso/Projects/ktlint-danger-kotlin/build.gradle.kts",
+                        issues =
+                            setOf(
+                                IssueReport(
+                                    line = 26,
+                                    column = 5,
+                                    message = "Missing space after //",
+                                    rule = RuleReport.Standard("comment-spacing"),
+                                    severity = SeverityIssue.ERROR,
+                                ),
+                                IssueReport(
+                                    line = 30,
+                                    column = 42,
+                                    message = "Expected newline before '.'",
+                                    rule = RuleReport.Standard("chain-method-continuation"),
+                                    severity = SeverityIssue.ERROR,
+                                ),
+                            ),
+                    ),
+                    FileIssueReport(
+                        name = "Documents/Perso/Projects/ktlint-danger-kotlin/SarifReportParser.kt",
+                        issues =
+                            setOf(
+                                IssueReport(
+                                    line = 30,
+                                    column = 48,
+                                    message = "Expected newline before '.'",
+                                    rule = RuleReport.Standard("chain-method-continuation"),
+                                    severity = SeverityIssue.ERROR,
+                                ),
+                            ),
+                    ),
+                ),
+            )
+
+        assertEquals(expectedReport, KtlintPlugin.parse(file))
+    }
+
+    @Test
     fun `Parse multiple files`() {
         val files = arrayOf(TestResources.Json.notEmpty, TestResources.Xml.notEmpty)
 
