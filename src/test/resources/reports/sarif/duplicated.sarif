@@ -1,0 +1,72 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "originalUriBaseIds": {
+        "%SRCROOT%": {
+          "uri": "file:///Users/bastienlebret/"
+        }
+      },
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Documents/Perso/Projects/ktlint-danger-kotlin/build.gradle.kts",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startColumn": 5,
+                  "startLine": 26
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Missing space after //"
+          },
+          "ruleId": "standard:comment-spacing"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Documents/Perso/Projects/ktlint-danger-kotlin/build.gradle.kts",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startColumn": 5,
+                  "startLine": 26
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Missing space after //"
+          },
+          "ruleId": "standard:comment-spacing"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/pinterest/ktlint/releases/tag/1.7.1",
+          "fullName": "ktlint",
+          "informationUri": "https://github.com/pinterest/ktlint/",
+          "language": "en",
+          "name": "ktlint",
+          "organization": "pinterest",
+          "rules": [
+          ],
+          "semanticVersion": "1.7.1",
+          "version": "1.7.1"
+        }
+      }
+    }
+  ]
+}
+

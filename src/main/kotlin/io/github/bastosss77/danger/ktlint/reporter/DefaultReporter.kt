@@ -10,8 +10,6 @@ internal class DefaultReporter(
 ) : KtlintReporter {
     private val rootPath = File("").absolutePath
 
-    // TODO: Add message with count of issues
-
     override fun report(report: KtlintReport) {
         if (!report.isClean) {
             report.issues.forEach { fileIssue ->
@@ -34,7 +32,7 @@ internal class DefaultReporter(
     private fun prepareMessage(issue: IssueReport): String =
         """
         **Ktlint** : ${issue.message}
-        **Rule** : ${issue.rule}
+        **Rule** : ${issue.rule.fullName}
         """.trimIndent()
 
     private fun cleanFilePath(path: String): String? {

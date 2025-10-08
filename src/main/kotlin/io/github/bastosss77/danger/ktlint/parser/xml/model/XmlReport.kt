@@ -3,11 +3,10 @@ package io.github.bastosss77.danger.ktlint.parser.xml.model
 import io.github.bastosss77.danger.ktlint.model.FileIssueReport
 import io.github.bastosss77.danger.ktlint.model.IssueReport
 import io.github.bastosss77.danger.ktlint.model.KtlintReport
+import io.github.bastosss77.danger.ktlint.model.RuleReport
 import io.github.bastosss77.danger.ktlint.model.SeverityIssue
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlElement
-import nl.adaptivity.xmlutil.serialization.XmlKeyName
-import nl.adaptivity.xmlutil.serialization.XmlMapEntryName
 import nl.adaptivity.xmlutil.serialization.XmlSerialName
 
 @Serializable
@@ -34,7 +33,7 @@ fun XmlReport.mapToKtlintReport(): KtlintReport =
                                         line = xmlError.line,
                                         column = xmlError.column,
                                         message = xmlError.message,
-                                        rule = xmlError.source,
+                                        rule = RuleReport.parse(xmlError.source),
                                         severity = SeverityIssue.from(xmlError.severity),
                                     )
                                 }.toSet(),
