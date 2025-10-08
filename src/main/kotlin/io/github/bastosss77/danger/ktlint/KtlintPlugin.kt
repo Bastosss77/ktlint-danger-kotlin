@@ -9,6 +9,15 @@ import io.github.bastosss77.danger.ktlint.reporter.DefaultReporter
 import io.github.bastosss77.danger.ktlint.reporter.KtlintReporter
 import systems.danger.kotlin.sdk.DangerPlugin
 import java.io.File
+import java.nio.file.FileSystems
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.util.stream.Collectors.toList
+import kotlin.io.path.Path
+import kotlin.io.path.absolutePathString
+import kotlin.io.path.isRegularFile
+import kotlin.io.path.listDirectoryEntries
+import kotlin.io.path.pathString
 
 /**
  * Ktlint plugin for Danger Kotlin. Parse and report Ktlint issue on your pull requests
@@ -47,6 +56,29 @@ object KtlintPlugin : DangerPlugin() {
         }
     }
 
+    /**
+     * Retrieve all files matching pattern and parse them
+     * @param glob Pattern for matching files
+     */
+    fun parse(glob: String) : KtlintReport {
+        val matcher = FileSystems.getDefault().getPathMatcher("glob:$glob")
+        val root = Paths.get("")
+
+
+        val files = Files.walk(root).use { paths ->
+            paths
+                .filter {it.isRegularFile() && matcher.matches(it) }
+                .map {
+                    println(it.absolutePathString())
+
+                    File(it.pathString)
+                }
+                .collect(toList())
+                .toList()
+        }
+
+        return parse(files.toTypedArray())
+    }
     /**
      * Post the parsed report via Danger to your pull request. I case the default reporter doesn't give
      * you satisfaction, you can give a custom one by implementing [KtlintReporter]

@@ -255,6 +255,123 @@ class KtlintPluginTests {
     }
 
     @Test
+    fun `Parse json files with glob`() {
+        val pattern = "**/test/resources/**/not-empty.json"
+        val expectedReport =
+            KtlintReport(
+                issues =
+                    setOf(
+                        FileIssueReport(
+                            name = "fakeFile.kt",
+                            issues =
+                                setOf(
+                                    IssueReport(
+                                        line = 13,
+                                        column = 1,
+                                        message = "Trailing space(s)",
+                                        rule = RuleReport.Standard("no-trailing-spaces"),
+                                        severity = null,
+                                    ),
+                                    IssueReport(
+                                        line = 24,
+                                        column = 5,
+                                        message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
+                                        rule = RuleReport.Standard("function-naming"),
+                                        severity = null,
+                                    ),
+                                    IssueReport(
+                                        line = 26,
+                                        column = 1,
+                                        message = "File must end with a newline (\\n)",
+                                        rule = RuleReport.Standard("final-newline"),
+                                        severity = null,
+                                    ),
+                                ),
+                        ),
+                    ),
+            )
+
+        val report = KtlintPlugin.parse(pattern)
+
+        assertEquals(expectedReport, report)
+    }
+
+    @Test
+    fun `Parse multiple files with glob`() {
+        val pattern = "**/test/resources/**/not-empty.{json,sarif}"
+        val expectedReport =
+            KtlintReport(
+                issues =
+                    setOf(
+                        FileIssueReport(
+                            name = "fakeFile.kt",
+                            issues =
+                                setOf(
+                                    IssueReport(
+                                        line = 13,
+                                        column = 1,
+                                        message = "Trailing space(s)",
+                                        rule = RuleReport.Standard("no-trailing-spaces"),
+                                        severity = null,
+                                    ),
+                                    IssueReport(
+                                        line = 24,
+                                        column = 5,
+                                        message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
+                                        rule = RuleReport.Standard("function-naming"),
+                                        severity = null,
+                                    ),
+                                    IssueReport(
+                                        line = 26,
+                                        column = 1,
+                                        message = "File must end with a newline (\\n)",
+                                        rule = RuleReport.Standard("final-newline"),
+                                        severity = null,
+                                    ),
+                                ),
+                        ),
+                        FileIssueReport(
+                            name = "Documents/Perso/Projects/ktlint-danger-kotlin/build.gradle.kts",
+                            issues =
+                                setOf(
+                                    IssueReport(
+                                        line = 26,
+                                        column = 5,
+                                        message = "Missing space after //",
+                                        rule = RuleReport.Standard("comment-spacing"),
+                                        severity = SeverityIssue.ERROR,
+                                    ),
+                                    IssueReport(
+                                        line = 30,
+                                        column = 42,
+                                        message = "Expected newline before '.'",
+                                        rule = RuleReport.Standard("chain-method-continuation"),
+                                        severity = SeverityIssue.ERROR,
+                                    ),
+                                ),
+                        ),
+                        FileIssueReport(
+                            name = "Documents/Perso/Projects/ktlint-danger-kotlin/SarifReportParser.kt",
+                            issues =
+                                setOf(
+                                    IssueReport(
+                                        line = 30,
+                                        column = 48,
+                                        message = "Expected newline before '.'",
+                                        rule = RuleReport.Standard("chain-method-continuation"),
+                                        severity = SeverityIssue.ERROR,
+                                    ),
+                                ),
+                        )
+                    ),
+            )
+
+        val report = KtlintPlugin.parse(pattern)
+
+        assertEquals(expectedReport, report)
+    }
+
+    @Test
     fun `Report with reporter`() {
         val report =
             KtlintReport(
