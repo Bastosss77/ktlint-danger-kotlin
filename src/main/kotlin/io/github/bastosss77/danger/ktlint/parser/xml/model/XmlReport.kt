@@ -34,7 +34,7 @@ fun XmlReport.mapToKtlintReport(): KtlintReport =
                                         column = xmlError.column,
                                         message = xmlError.message,
                                         rule = RuleReport.parse(xmlError.source),
-                                        severity = SeverityIssue.from(xmlError.severity),
+                                        severity = SeverityIssue.from(xmlError.severity) ?: SeverityIssue.ERROR,
                                     )
                                 }.toSet(),
                     )

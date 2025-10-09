@@ -30,7 +30,7 @@ object KtlintPlugin : DangerPlugin() {
         mapOf(
             "json" to JsonReportParser(),
             "xml" to XMLReportParser(),
-            "sarif" to SarifReportParser()
+            "sarif" to SarifReportParser(),
         )
 
     /**
@@ -60,25 +60,25 @@ object KtlintPlugin : DangerPlugin() {
      * Retrieve all files matching pattern and parse them
      * @param glob Pattern for matching files
      */
-    fun parse(glob: String) : KtlintReport {
+    fun parse(glob: String): KtlintReport {
         val matcher = FileSystems.getDefault().getPathMatcher("glob:$glob")
         val root = Paths.get("")
 
+        val files =
+            Files.walk(root).use { paths ->
+                paths
+                    .filter { it.isRegularFile() && matcher.matches(it) }
+                    .map {
+                        println(it.absolutePathString())
 
-        val files = Files.walk(root).use { paths ->
-            paths
-                .filter {it.isRegularFile() && matcher.matches(it) }
-                .map {
-                    println(it.absolutePathString())
-
-                    File(it.pathString)
-                }
-                .collect(toList())
-                .toList()
-        }
+                        File(it.pathString)
+                    }.collect(toList())
+                    .toList()
+            }
 
         return parse(files.toTypedArray())
     }
+
     /**
      * Post the parsed report via Danger to your pull request. I case the default reporter doesn't give
      * you satisfaction, you can give a custom one by implementing [KtlintReporter]
