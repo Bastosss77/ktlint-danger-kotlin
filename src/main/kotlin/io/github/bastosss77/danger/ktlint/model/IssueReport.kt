@@ -5,5 +5,5 @@ data class IssueReport(
     val column: Int,
     val message: String,
     val rule: RuleReport,
-    val severity: SeverityIssue?,
+    val severity: SeverityIssue,
 )

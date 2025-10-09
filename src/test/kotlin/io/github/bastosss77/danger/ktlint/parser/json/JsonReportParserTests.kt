@@ -4,6 +4,7 @@ import io.github.bastosss77.danger.ktlint.model.FileIssueReport
 import io.github.bastosss77.danger.ktlint.model.IssueReport
 import io.github.bastosss77.danger.ktlint.model.KtlintReport
 import io.github.bastosss77.danger.ktlint.model.RuleReport
+import io.github.bastosss77.danger.ktlint.model.SeverityIssue
 import io.github.bastosss77.danger.ktlint.parser.json.model.JsonFileReport
 import io.github.bastosss77.danger.ktlint.utils.TestResources
 import kotlin.test.Test
@@ -39,21 +40,21 @@ class JsonReportParserTests {
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = RuleReport.Standard("no-trailing-spaces"),
-                                        severity = null,
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 24,
                                         column = 5,
                                         message = "Function name should start with a lowercase letter (except factory methods) and use camel case",
                                         rule = RuleReport.Standard("function-naming"),
-                                        severity = null,
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = RuleReport.Standard("final-newline"),
-                                        severity = null,
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                 ),
                         ),
@@ -96,14 +97,14 @@ class JsonReportParserTests {
                                         column = 1,
                                         message = "Trailing space(s)",
                                         rule = RuleReport.Standard("no-trailing-spaces"),
-                                        severity = null,
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                     IssueReport(
                                         line = 26,
                                         column = 1,
                                         message = "File must end with a newline (\\n)",
                                         rule = RuleReport.Standard("final-newline"),
-                                        severity = null,
+                                        severity = SeverityIssue.ERROR,
                                     ),
                                 ),
                         ),

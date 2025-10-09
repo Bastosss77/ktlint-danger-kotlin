@@ -40,7 +40,7 @@ fun SarifReport.mapToKtlintReport(): KtlintReport {
                                         .physicalLocation.region.startColumn,
                                 message = run.message.text,
                                 rule = RuleReport.parse(run.ruleId),
-                                severity = SeverityIssue.from(run.level),
+                                severity = SeverityIssue.from(run.level) ?: SeverityIssue.ERROR,
                             ),
                         )
                     }

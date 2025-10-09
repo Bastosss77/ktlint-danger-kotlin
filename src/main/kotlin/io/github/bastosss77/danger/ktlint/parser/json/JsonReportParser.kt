@@ -4,6 +4,7 @@ import io.github.bastosss77.danger.ktlint.model.FileIssueReport
 import io.github.bastosss77.danger.ktlint.model.IssueReport
 import io.github.bastosss77.danger.ktlint.model.KtlintReport
 import io.github.bastosss77.danger.ktlint.model.RuleReport
+import io.github.bastosss77.danger.ktlint.model.SeverityIssue
 import io.github.bastosss77.danger.ktlint.parser.KtlintReportParser
 import io.github.bastosss77.danger.ktlint.parser.json.model.JsonFileReport
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -41,7 +42,7 @@ private fun mapToKtlintReport(issues: Set<JsonFileReport>): KtlintReport =
                                         column = jsonIssueReport.column,
                                         message = jsonIssueReport.message,
                                         rule = RuleReport.parse(jsonIssueReport.rule),
-                                        severity = null,
+                                        severity = SeverityIssue.ERROR,
                                     )
                                 }.toSet(),
                     )
