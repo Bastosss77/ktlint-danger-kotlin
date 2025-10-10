@@ -1,5 +1,9 @@
 package io.github.bastosss77.danger.ktlint.parser.json
 
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import io.github.bastosss77.danger.ktlint.model.FileIssueReport
 import io.github.bastosss77.danger.ktlint.model.IssueReport
 import io.github.bastosss77.danger.ktlint.model.KtlintReport
@@ -7,23 +11,16 @@ import io.github.bastosss77.danger.ktlint.model.RuleReport
 import io.github.bastosss77.danger.ktlint.model.SeverityIssue
 import io.github.bastosss77.danger.ktlint.parser.KtlintReportParser
 import io.github.bastosss77.danger.ktlint.parser.json.model.JsonFileReport
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.decodeFromStream
 import java.io.File
 
 internal class JsonReportParser : KtlintReportParser {
-    private val json = Json.Default
+    private val jsonParser = ObjectMapper()
+        .registerKotlinModule()
 
-    @OptIn(ExperimentalSerializationApi::class)
     override fun parse(file: File): KtlintReport {
-        val issues =
-            json
-                .decodeFromStream<Set<JsonFileReport>>(file.inputStream())
-                .filter { it.errors.isNotEmpty() }
-                .toSet()
+        val filesErrors = jsonParser.readValue<Set<JsonFileReport>>(file)
 
-        return mapToKtlintReport(issues)
+        return mapToKtlintReport(filesErrors)
     }
 }
 
@@ -31,12 +28,15 @@ private fun mapToKtlintReport(issues: Set<JsonFileReport>): KtlintReport =
     KtlintReport(
         issues =
             issues
-                .map { jsonFileReport ->
+                .mapNotNull { jsonFileReport ->
+                    if(jsonFileReport.errors.isEmpty()) return@mapNotNull null
+
                     FileIssueReport(
                         name = jsonFileReport.file,
                         issues =
                             jsonFileReport.errors
-                                .map { jsonIssueReport ->
+                                .mapNotNull { jsonIssueReport ->
+                                    if(jsonFileReport.errors.isEmpty()) return@mapNotNull null
                                     IssueReport(
                                         line = jsonIssueReport.line,
                                         column = jsonIssueReport.column,

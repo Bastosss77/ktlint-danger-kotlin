@@ -1,12 +1,20 @@
 package io.github.bastosss77.danger.ktlint.parser.xml.model
 
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
-@Serializable
 data class XmlErrorReport(
-    val line: Int,
-    val column: Int,
-    val message: String,
-    val source: String,
-    val severity: String,
+    @field:JacksonXmlProperty
+    val line: Int = 0,
+
+    @field:JacksonXmlProperty
+    val column: Int = 0,
+
+    @field:JacksonXmlProperty
+    val message: String = "",
+
+    @field:JacksonXmlProperty
+    val source: String = "",
+
+    @field:JacksonXmlProperty
+    val severity: String = "",
 )

@@ -1,20 +1,24 @@
 package io.github.bastosss77.danger.ktlint.parser.xml.model
 
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
 import io.github.bastosss77.danger.ktlint.model.FileIssueReport
 import io.github.bastosss77.danger.ktlint.model.IssueReport
 import io.github.bastosss77.danger.ktlint.model.KtlintReport
 import io.github.bastosss77.danger.ktlint.model.RuleReport
 import io.github.bastosss77.danger.ktlint.model.SeverityIssue
-import kotlinx.serialization.Serializable
-import nl.adaptivity.xmlutil.serialization.XmlElement
-import nl.adaptivity.xmlutil.serialization.XmlSerialName
 
-@Serializable
-@XmlSerialName("checkstyle")
+@JacksonXmlRootElement(namespace = "checkstyle")
 data class XmlReport(
-    val version: String,
-    @XmlElement(true)
-    val file: List<XmlFileReport>,
+
+    @field:JacksonXmlProperty
+    val version: String = "",
+
+    @field:JsonProperty("file")
+    @field:JacksonXmlElementWrapper(useWrapping = false)
+    val file: List<XmlFileReport> = emptyList(),
 )
 
 fun XmlReport.mapToKtlintReport(): KtlintReport =

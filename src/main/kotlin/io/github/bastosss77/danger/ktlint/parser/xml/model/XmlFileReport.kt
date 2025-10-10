@@ -1,13 +1,14 @@
 package io.github.bastosss77.danger.ktlint.parser.xml.model
 
-import kotlinx.serialization.Serializable
-import nl.adaptivity.xmlutil.serialization.XmlSerialName
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
-@Serializable
-@XmlSerialName("file", "", "")
 data class XmlFileReport(
-    @XmlSerialName("name")
-    val name: String,
-    @XmlSerialName("error")
-    val errors: List<XmlErrorReport>,
+    @field:JacksonXmlProperty
+    val name: String = "",
+
+    @field:JsonProperty("error")
+    @field:JacksonXmlElementWrapper(useWrapping = false)
+    val errors: List<XmlErrorReport> = emptyList(),
 )

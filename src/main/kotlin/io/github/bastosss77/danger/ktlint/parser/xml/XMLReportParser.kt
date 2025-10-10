@@ -1,20 +1,17 @@
 package io.github.bastosss77.danger.ktlint.parser.xml
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.github.bastosss77.danger.ktlint.model.KtlintReport
 import io.github.bastosss77.danger.ktlint.parser.KtlintReportParser
 import io.github.bastosss77.danger.ktlint.parser.xml.model.XmlReport
 import io.github.bastosss77.danger.ktlint.parser.xml.model.mapToKtlintReport
-import nl.adaptivity.xmlutil.newReader
-import nl.adaptivity.xmlutil.serialization.XML
-import nl.adaptivity.xmlutil.xmlStreaming
 import java.io.File
 
 class XMLReportParser : KtlintReportParser {
-    private val xml = XML.Companion
+    private val xmlParser = XmlMapper()
 
-    override fun parse(file: File): KtlintReport {
-        val reader = xmlStreaming.newReader(file.inputStream())
+    override fun parse(file: File): KtlintReport =
+        xmlParser.readValue<XmlReport>(file).mapToKtlintReport()
 
-        return xml.decodeFromReader<XmlReport>(reader).mapToKtlintReport()
-    }
 }

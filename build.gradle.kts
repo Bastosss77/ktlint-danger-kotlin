@@ -1,9 +1,9 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jlleitschuh.gradle.ktlint.KtlintExtension
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
     alias(libs.plugins.kotlin)
-    alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.mavenPublish)
 }
@@ -14,10 +14,10 @@ repositories {
 
 dependencies {
     implementation(libs.dangerSdk)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.kotlinx.serialization.xml)
+    implementation(platform(libs.jackson.bom))
+    implementation(libs.jackson.xml)
+    implementation(libs.jackson.kotlin)
 
-    testImplementation(libs.kotlinx.serialization.json)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlin.test)
 }

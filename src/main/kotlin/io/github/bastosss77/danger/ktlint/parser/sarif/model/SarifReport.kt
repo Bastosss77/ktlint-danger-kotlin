@@ -5,9 +5,7 @@ import io.github.bastosss77.danger.ktlint.model.IssueReport
 import io.github.bastosss77.danger.ktlint.model.KtlintReport
 import io.github.bastosss77.danger.ktlint.model.RuleReport
 import io.github.bastosss77.danger.ktlint.model.SeverityIssue
-import kotlinx.serialization.Serializable
 
-@Serializable
 data class SarifReport(
     val runs: List<SarifRunReport>,
 )
