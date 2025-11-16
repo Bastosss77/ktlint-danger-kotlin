@@ -18,7 +18,6 @@ register.plugin(KtlintPlugin)
 
 Parse a file and create a report
 
-:warning: Currently, on Json format is supported 
 ```kotlin
 val file = File("my/path/to/ktlint/report.json")
 val report = KtlintPlugin.parse(file)
